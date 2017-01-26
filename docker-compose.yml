@@ -1,0 +1,11 @@
+db:
+  image: postgres
+web:
+  build: .
+  command: gunicorn fooapi.wsgi:application -b :7000
+  volumes:
+    - .:/code
+  ports:
+    - "8000:7000"
+  links:
+    - db
